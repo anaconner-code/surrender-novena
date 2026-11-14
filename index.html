@@ -1,8 +1,18 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
-<title>Surrender Novena</title>
 <link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<title>The Surrender Novena</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Surrender Novena">
+<meta property="og:description" content="O Jesus, I surrender myself to You, take care of everything! Pray the nine-day novena, one day per screen.">
+<meta property="og:image" content="https://www.surrendernovena.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.surrendernovena.org/">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f6f0e4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1b1512" media="(prefers-color-scheme: dark)">
 <meta name="mobile-web-app-capable" content="yes">
@@ -34,7 +44,7 @@ body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-
 .row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
 .brand { font-family:var(--label); color:var(--red); font-size:1.15rem; letter-spacing:.04em; }
 .size { display:flex; gap:6px; }
-.size button, .tabs button { font:inherit; font-size:1rem; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:8px; min-width:44px; min-height:40px; cursor:pointer; }
+.size button, .tabs button { font:inherit; font-size:1rem; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:8px; min-width:44px; min-height:44px; cursor:pointer; }
 .tabs { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; }
 .tabs::-webkit-scrollbar { display:none; }
 .tabs button { flex:0 0 auto; padding:0 10px; }
@@ -88,12 +98,13 @@ h1 { font-size:2.1em; } h2 { font-size:1.9em; }
 .trk.next-up { border-color:var(--red); border-width:2px; }
 .trk-day { font-weight:600; }
 .trk-date { color:var(--muted); font-size:.85em; min-height:1.2em; font-variant-numeric:tabular-nums; }
-.reset { margin-top:.9em; text-align:center; }
-.link { font:inherit; font-size:.85rem; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:.4em; }
+.reset { margin-top:2rem; text-align:center; }
+.link { font:inherit; font-size:.85rem; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:12px 20px; }
 .confirm p { margin:.3em 0 .6em !important; font-size:.9em; }
 .confirm-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
 .btn.danger { background:var(--red); border-color:var(--red); color:var(--paper); }
 .tabs button.done::after { content:" ✓"; }
+button { min-height:44px; }
 button:focus-visible { outline:3px solid var(--red); outline-offset:2px; }
 @media (prefers-reduced-motion: no-preference) { .bead { transition:background .15s; } }
 </style>
@@ -127,7 +138,7 @@ button:focus-visible { outline:3px solid var(--red); outline-offset:2px; }
     <div class="reset">
       <button type="button" class="link" id="reset">Start a new novena</button>
       <div class="confirm" id="confirm" hidden>
-        <p>Clear all 9 days and bead counts?</p>
+        <p>Are you sure? This clears your progress.</p>
         <div class="confirm-row"><button type="button" class="btn" id="reset-no">Keep them</button><button type="button" class="btn danger" id="reset-yes">Yes, clear</button></div>
       </div>
     </div>
