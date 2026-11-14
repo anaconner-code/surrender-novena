@@ -404,6 +404,7 @@ button:focus-visible { outline:3px solid var(--red); outline-offset:2px; }
   });
   // Prayer to Mary, available on every day: opens in place, stays open across days once opened.
   const maryHTML = document.querySelector('#mary .pline').innerHTML;
+  const maryImg = document.querySelector('#mary img.heart');
   const maryBtns = [];
   function paintMary(){ maryBtns.forEach(([b, box]) => { b.setAttribute('aria-expanded', state.maryOpen ? 'true' : 'false'); box.hidden = !state.maryOpen; }); }
   document.querySelectorAll('.day').forEach(sec => {
@@ -412,6 +413,7 @@ button:focus-visible { outline:3px solid var(--red); outline-offset:2px; }
     b.innerHTML = 'Prayer to Mary<span class="chev" aria-hidden="true">&#9662;</span>';
     box.className = 'prayer mary-inline'; box.id = 'mary-in' + d;
     box.innerHTML = '<p class="pline">' + maryHTML + '</p>';
+    box.prepend(maryImg.cloneNode());
     const done = sec.querySelector('.done-btn');
     done.before(b, box);
     b.addEventListener('click', () => { state.maryOpen = !state.maryOpen; save(); paintMary(); });

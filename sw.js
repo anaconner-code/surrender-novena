@@ -1,6 +1,6 @@
 // Offline support: keep a copy of the page, icons and fonts on the phone.
 // Bump VERSION whenever index.html changes so phones pick up the new copy.
-const VERSION = 'novena-v4';
+const VERSION = 'novena-v5';
 const CORE = ['/', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
