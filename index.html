@@ -75,6 +75,11 @@ h1 { font-size:2.1em; } h2 { font-size:1.9em; }
 .about strong { color:var(--ink); font-weight:600; }
 .how { font-size:.9em; color:var(--muted); }
 .mary .pline { font-style:normal; }
+.mary-btn { display:block; width:100%; margin-top:1em; }
+.mary-btn .chev { display:inline-block; margin-left:.3em; }
+.mary-btn[aria-expanded="true"] .chev { transform:rotate(180deg); }
+.mary-inline { margin-top:.6em; }
+.mary-inline .pline { font-style:normal; }
 .done-btn { display:flex; align-items:center; gap:14px; width:100%; margin-top:1em; padding:.85em 1em; font:inherit; font-size:1rem; text-align:left;
   color:var(--ink); background:var(--paper); border:1.5px dashed var(--red); border-radius:12px; cursor:pointer; min-height:56px; }
 .done-btn .box { flex:0 0 auto; width:30px; height:30px; border:2px solid var(--red); border-radius:7px; display:grid; place-items:center; background:var(--bg); }
@@ -397,6 +402,22 @@ button:focus-visible { outline:3px solid var(--red); outline-offset:2px; }
       save(); paint();
     });
   });
+  // Prayer to Mary, available on every day: opens in place, stays open across days once opened.
+  const maryHTML = document.querySelector('#mary .pline').innerHTML;
+  const maryBtns = [];
+  function paintMary(){ maryBtns.forEach(([b, box]) => { b.setAttribute('aria-expanded', state.maryOpen ? 'true' : 'false'); box.hidden = !state.maryOpen; }); }
+  document.querySelectorAll('.day').forEach(sec => {
+    const d = sec.dataset.day, b = document.createElement('button'), box = document.createElement('div');
+    b.type = 'button'; b.className = 'btn mary-btn'; b.setAttribute('aria-controls', 'mary-in' + d);
+    b.innerHTML = 'Prayer to Mary<span class="chev" aria-hidden="true">&#9662;</span>';
+    box.className = 'prayer mary-inline'; box.id = 'mary-in' + d;
+    box.innerHTML = '<p class="pline">' + maryHTML + '</p>';
+    const done = sec.querySelector('.done-btn');
+    done.before(b, box);
+    b.addEventListener('click', () => { state.maryOpen = !state.maryOpen; save(); paintMary(); });
+    maryBtns.push([b, box]);
+  });
+  paintMary();
   document.getElementById('resume').addEventListener('click', e => show(e.currentTarget.dataset.target || 'day1', true));
   const conf = document.getElementById('confirm'), resetBtn = document.getElementById('reset');
   resetBtn.addEventListener('click', () => { conf.hidden = false; resetBtn.hidden = true; document.getElementById('reset-no').focus(); });
