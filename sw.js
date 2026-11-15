@@ -1,6 +1,6 @@
 // Offline support: keep a copy of the page, icons and fonts on the phone.
 // Bump VERSION whenever index.html changes so phones pick up the new copy.
-const VERSION = 'novena-v5';
+const VERSION = 'novena-v6';
 const CORE = ['/', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -18,6 +18,8 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
+  // Never cache the visit counter.
+  if (new URL(req.url).pathname.startsWith('/_vercel/')) return;
 
   // The page itself: try the network first so edits show up, fall back to the saved copy offline.
   if (req.mode === 'navigate') {
